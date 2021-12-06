@@ -34,9 +34,12 @@ function App() {
   };
 
   const removeTodo = async (id) => {
+    const todo = todos.find((todo) => {
+      if (todo.id === parseInt(id)) return todo;
+    });
     id = parseInt(id);
-    const delTodo = await deleteTodoFunc(id);
-    todos.splice(todos.indexOf(delTodo), 1);
+    await deleteTodoFunc(id);
+    todos.splice(todos.indexOf(todo), 1);
     setTodos([...todos]);
   };
 
